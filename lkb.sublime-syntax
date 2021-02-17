@@ -1,0 +1,59 @@
+%YAML 1.2
+---
+# See http://www.sublimetext.com/docs/3/syntax.html
+# https://github.com/Sevenanths/tdl-colouring-st
+file_extensions:
+  - tdl
+  - mtr
+scope: tdl
+
+contexts:
+  prototype:
+    - include: comments
+
+  main:
+    - include: numbers
+    - include: strings
+    - include: operators
+    - include: identifier
+    - include: commasperiods
+    - include: coindex
+    - include: comment
+    - include: features
+    - include: values
+
+  identifier:
+    - match: '[\w\*\+-]+\s*(?= (:=|:\+))'
+      scope: entity.name
+
+  numbers:
+    - match: '\b(-)?[0-9.]+\b'
+      scope: constant.numeric
+
+  strings:
+    - match: '"(\w|[-.~/+:])+"'
+      scope: string
+
+  operators:
+    - match: '(:=|&|:<|:\+|:<|<|>|\[|\]|!)'
+      scope: keyword.operator
+
+  features:
+    - match: '(?<![A-Z0-9]\s)[A-Z0-9]+[A-Z0-9\-.]*\s'
+      scope: constant.character
+
+  values:
+    - match: '[*a-z1-2-]+'
+      scope: variable
+
+  commasperiods:
+    - match: '\s*[,.]'
+      scope: keyword.operator
+
+  coindex:
+    - match: '#(\w|-)+'
+      scope: string
+
+  comment:
+    - match: ';.*'
+      scope: comment
